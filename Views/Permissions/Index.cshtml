@@ -1,9 +1,9 @@
 @model IEnumerable<Permission>
-@{ ViewData["Title"] = "Permissions"; }
-<h1 class="h3 mb-1">Permission catalog</h1>
-<p class="text-muted">Permissions are defined by the application and assigned to roles.</p>
+@{ ViewData["Title"] = "Permisos"; }
+<h1 class="h3 mb-1">Catálogo de permisos</h1>
+<p class="text-muted">Los permisos son definidos por la aplicación y asignados a los roles.</p>
 <div class="table-responsive"><table class="table table-striped bg-white align-middle">
-<thead class="table-light"><tr><th>Code</th><th>Name</th><th>Description</th></tr></thead><tbody>
+<thead class="table-light"><tr><th>Código</th><th>Nombre</th><th>Descripción</th></tr></thead><tbody>
 @foreach (var permission in Model) {
 <tr><td><code>@permission.Code</code></td><td>@permission.Name</td><td>@permission.Description</td></tr>
 }

@@ -1,6 +1,6 @@
 @model LoginViewModel
 @{
-    ViewData["Title"] = "Sign in";
+    ViewData["Title"] = "Ingreso";
 }
 <div class="row justify-content-center align-items-center py-5">
     <div class="col-sm-10 col-md-6 col-lg-4">
@@ -8,7 +8,7 @@
             <div class="card-body p-4 p-lg-5">
                 <div class="text-center mb-4">
                     <div class="display-6 text-success fw-bold">MyPharmacy</div>
-                    <p class="text-muted mb-0">Sign in to manage your pharmacy</p>
+                    <p class="text-muted mb-0">Inicia sesión para administrar tu farmacia</p>
                 </div>
 
                 <form asp-action="Login" asp-controller="Account" method="post">
@@ -32,11 +32,11 @@
                         <label asp-for="RememberMe" class="form-check-label"></label>
                     </div>
 
-                    <button type="submit" class="btn btn-success w-100">Sign in</button>
+                    <button type="submit" class="btn btn-success w-100">Iniciar sesión</button>
                 </form>
 
                 <div class="text-muted small mt-4">
-                    Demo accounts are listed in the project README.
+                    Las cuentas de demostración aparecen en el README del proyecto.
                 </div>
             </div>
         </div>
