@@ -44,7 +44,7 @@ public class AccountController : Controller
         // Keep the response generic to avoid revealing whether an email is registered.
         if (user == null || !user.IsActive)
         {
-            ModelState.AddModelError(string.Empty, "Invalid email or password.");
+            ModelState.AddModelError(string.Empty, "Correo electrónico o contraseña no válidos.");
             return View(model);
         }
 
@@ -66,11 +66,11 @@ public class AccountController : Controller
         {
             ModelState.AddModelError(
                 string.Empty,
-                "Your account is temporarily locked after multiple failed attempts. Please try again later.");
+                "Tu cuenta está bloqueada temporalmente después de varios intentos fallidos. Inténtalo de nuevo más tarde.");
         }
         else
         {
-            ModelState.AddModelError(string.Empty, "Invalid email or password.");
+            ModelState.AddModelError(string.Empty, "Correo electrónico o contraseña no válidos.");
         }
 
         return View(model);
@@ -104,14 +104,14 @@ public class AccountController : Controller
 
 public class LoginViewModel
 {
-    [Required, EmailAddress]
-    [Display(Name = "Email address")]
+    [Required(ErrorMessage = "El correo electrónico es obligatorio."), EmailAddress(ErrorMessage = "Introduce un correo electrónico válido.")]
+    [Display(Name = "Correo electrónico")]
     public string Email { get; set; } = string.Empty;
 
-    [Required, DataType(DataType.Password)]
-    [Display(Name = "Password")]
+    [Required(ErrorMessage = "La contraseña es obligatoria."), DataType(DataType.Password)]
+    [Display(Name = "Contraseña")]
     public string Password { get; set; } = string.Empty;
 
-    [Display(Name = "Remember me")]
+    [Display(Name = "Recordarme")]
     public bool RememberMe { get; set; }
 }
