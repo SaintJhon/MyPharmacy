@@ -1,32 +1,39 @@
-﻿@{
-    ViewData["Title"] = "Inicio de Sesion";
+@{
+    ViewData["Title"] = "Dashboard";
 }
+<div class="p-4 p-lg-5 bg-white rounded-4 shadow-sm mb-4">
+    <span class="badge text-bg-success mb-3">Pharmacy management</span>
+    <h1 class="display-6 fw-bold">Welcome to MyPharmacy</h1>
+    <p class="lead text-muted mb-0">Manage your products, branches, suppliers, users, roles, and access permissions from one place.</p>
+</div>
 
-<div class="row justify-content-center mt-5">
-    <div class="col-md-4">
-        <div class="card shadow">
-            <div class="card-body">
-                <h3 class="text-center mb-4">Farmacia Login</h3>
-
-                @if (ViewBag.Error != null)
-                {
-                    <div class="alert alert-danger" role="alert">
-                        @ViewBag.Error
-                    </div>
-                }
-
-                <form asp-action="Login" asp-controller="Home" method="post">
-                    <div class="mb-3">
-                        <label class="form-label">Correo electronico</label>
-                        <input type="email" name="correo" class="form-control" required />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Contraseña</label>
-                        <input type="password" name="password" class="form-control" required />
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Ingresar</button>
-                </form>
-            </div>
-        </div>
+<div class="row g-3">
+    <div class="col-sm-6 col-xl-3">
+        <a asp-controller="Products" asp-action="Index" class="text-decoration-none">
+            <div class="card page-card shadow-sm h-100"><div class="card-body">
+                <h2 class="h5 text-success">Products</h2><p class="text-muted mb-0">Manage the pharmacy product catalog.</p>
+            </div></div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <a asp-controller="Branches" asp-action="Index" class="text-decoration-none">
+            <div class="card page-card shadow-sm h-100"><div class="card-body">
+                <h2 class="h5 text-success">Branches</h2><p class="text-muted mb-0">Manage pharmacy locations.</p>
+            </div></div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <a asp-controller="Suppliers" asp-action="Index" class="text-decoration-none">
+            <div class="card page-card shadow-sm h-100"><div class="card-body">
+                <h2 class="h5 text-success">Suppliers</h2><p class="text-muted mb-0">Keep supplier contact information up to date.</p>
+            </div></div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <a asp-controller="Profile" asp-action="Index" class="text-decoration-none">
+            <div class="card page-card shadow-sm h-100"><div class="card-body">
+                <h2 class="h5 text-success">My profile</h2><p class="text-muted mb-0">Update your personal information and password.</p>
+            </div></div>
+        </a>
     </div>
 </div>

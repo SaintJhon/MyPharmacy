@@ -1,0 +1,16 @@
+@model Product
+@{ ViewData["Title"] = "Add product"; }
+<div class="row"><div class="col-lg-8 col-xl-6">
+    <h1 class="h3 mb-3">Add product</h1>
+    <form method="post" class="card page-card shadow-sm"><div class="card-body p-4">
+        <input asp-for="Id" type="hidden" />
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+        <div class="mb-3"><label asp-for="Barcode" class="form-label">Barcode</label><input asp-for="Barcode" class="form-control" /><span asp-validation-for="Barcode" class="text-danger small"></span></div>
+        <div class="mb-3"><label asp-for="Name" class="form-label">Product name</label><input asp-for="Name" class="form-control" /><span asp-validation-for="Name" class="text-danger small"></span></div>
+        <div class="mb-3"><label asp-for="Description" class="form-label">Description</label><textarea asp-for="Description" class="form-control" rows="3"></textarea><span asp-validation-for="Description" class="text-danger small"></span></div>
+        <div class="mb-3"><label asp-for="SalePrice" class="form-label">Sale price</label><input asp-for="SalePrice" class="form-control" type="number" min="0.01" step="0.01" /><span asp-validation-for="SalePrice" class="text-danger small"></span></div>
+        <div class="mb-3"><label asp-for="ExpirationDate" class="form-label">Expiration date</label><input asp-for="ExpirationDate" class="form-control" type="date" /><span asp-validation-for="ExpirationDate" class="text-danger small"></span></div>
+        <button type="submit" class="btn btn-success">Create product</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+    </div></form>
+</div></div>

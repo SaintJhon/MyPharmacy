@@ -1,0 +1,24 @@
+@model RoleViewModel
+@{ ViewData["Title"] = "Edit role"; }
+<div class="row"><div class="col-lg-9 col-xl-7">
+<h1 class="h3 mb-3">Edit role</h1>
+<form method="post" class="card page-card shadow-sm"><div class="card-body p-4">
+<input asp-for="Id" type="hidden" />
+<div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+<div class="mb-3"><label asp-for="Name" class="form-label">Role name</label><input asp-for="Name" class="form-control" /><span asp-validation-for="Name" class="text-danger small"></span></div>
+<div class="mb-4"><label asp-for="Description" class="form-label">Description</label><textarea asp-for="Description" class="form-control" rows="2"></textarea><span asp-validation-for="Description" class="text-danger small"></span></div>
+<h2 class="h5">Permissions</h2>
+<p class="text-muted">Select all permissions that should be granted to this role.</p>
+<div class="row">
+@foreach (Permission permission in (IEnumerable<Permission>)ViewBag.Permissions) {
+<div class="col-md-6 mb-2">
+<div class="form-check">
+<input class="form-check-input" type="checkbox" name="PermissionIds" value="@permission.Id" id="permission-@permission.Id" checked="@Model.PermissionIds.Contains(permission.Id)" />
+<label class="form-check-label" for="permission-@permission.Id"><span class="fw-semibold">@permission.Name</span><br /><small class="text-muted">@permission.Code</small></label>
+</div>
+</div>
+}
+</div>
+<button type="submit" class="btn btn-success mt-3">Save changes</button>
+<a asp-action="Index" class="btn btn-outline-secondary mt-3">Cancel</a>
+</div></form></div></div>

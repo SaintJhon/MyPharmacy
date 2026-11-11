@@ -1,19 +1,26 @@
-﻿namespace SistemaFarmacia.Models
+using System.ComponentModel.DataAnnotations;
+
+namespace MyPharmacy.Models;
+
+public class Supplier
 {
-    public class Supplier
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        public string Nit { get; set; } = string.Empty;
+    [Required, StringLength(30)]
+    public string Nit { get; set; } = string.Empty;
 
-        public string CompanyName { get; set; } = string.Empty;
+    [Required, StringLength(120)]
+    public string CompanyName { get; set; } = string.Empty;
 
-        public string Contact { get; set; } = string.Empty;
+    [StringLength(100)]
+    public string? Contact { get; set; }
 
-        public string Phone { get; set; } = string.Empty;
+    [StringLength(25)]
+    public string? Phone { get; set; }
 
-        public string Email { get; set; } = string.Empty;
+    [EmailAddress, StringLength(150)]
+    public string? Email { get; set; }
 
-        public string Address { get; set; } = string.Empty;
-    }
+    [StringLength(200)]
+    public string? Address { get; set; }
 }

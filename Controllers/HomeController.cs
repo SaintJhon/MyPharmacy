@@ -1,37 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 
-namespace SistemaFarmacia.Controllers
+namespace MyPharmacy.Controllers;
+
+[Authorize]
+public class HomeController : Controller
 {
-    public class HomeController : Controller
-    {
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Login(string correo, string password)
-        {
-            // Validacion
-            if (correo == "admin@farmacia.com" && password == "123")
-            {
-                HttpContext.Session.SetString("Rol", "Administrador");
-                return RedirectToAction("Index", "Productos");
-            }
-            else if (correo == "empleado@farmacia.com" && password == "123")
-            {
-                HttpContext.Session.SetString("Rol", "Empleado");
-                return RedirectToAction("Index", "Productos");
-            }
-            else if (correo == "cliente@farmacia.com" && password == "123")
-            {
-                HttpContext.Session.SetString("Rol", "Cliente");
-                return RedirectToAction("Index", "Productos");
-            }
-
-            ViewBag.Error = "Datos incorrectos";
-            return View("Index");
-        }
-    }
+    public IActionResult Index() => View();
+    [AllowAnonymous]
+    public IActionResult Error() => View();
 }
