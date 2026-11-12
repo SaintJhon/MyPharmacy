@@ -8,29 +8,29 @@ public static class SeedData
 {
     private static readonly (string Code, string Name, string Description)[] PermissionDefinitions =
     {
-        ("users.view", "View users", "View the user directory."),
-        ("users.create", "Create users", "Create new user accounts."),
-        ("users.edit", "Edit users", "Edit user information and assigned roles."),
-        ("users.delete", "Deactivate users", "Deactivate user accounts."),
+        ("users.view", "Ver usuarios", "Ver el directorio de usuarios."),
+        ("users.create", "Crear usuarios", "Crear nuevas cuentas de usuario."),
+        ("users.edit", "Editar usuarios", "Editar la información de los usuarios y sus roles asignados."),
+        ("users.delete", "Desactivar usuarios", "Desactivar cuentas de usuario."),
 
-        ("roles.view", "View roles", "View roles and their assigned permissions."),
-        ("roles.create", "Create roles", "Create new roles."),
-        ("roles.edit", "Edit roles", "Edit roles and their assigned permissions."),
+        ("roles.view", "Ver roles", "Ver los roles y sus permisos asignados."),
+        ("roles.create", "Crear roles", "Crear nuevos roles."),
+        ("roles.edit", "Editar roles", "Editar los roles y sus permisos asignados."),
 
-        ("products.view", "View products", "View the product catalog."),
-        ("products.create", "Create products", "Add products to the catalog."),
-        ("products.edit", "Edit products", "Update product information."),
-        ("products.delete", "Delete products", "Remove products from the catalog."),
+        ("products.view", "Ver productos", "Ver el catálogo de productos."),
+        ("products.create", "Crear productos", "Agregar productos al catálogo."),
+        ("products.edit", "Editar productos", "Actualizar la información de los productos."),
+        ("products.delete", "Eliminar productos", "Eliminar productos del catálogo."),
 
-        ("branches.view", "View branches", "View pharmacy branches."),
-        ("branches.create", "Create branches", "Add pharmacy branches."),
-        ("branches.edit", "Edit branches", "Update pharmacy branch information."),
-        ("branches.delete", "Delete branches", "Remove pharmacy branches."),
+        ("branches.view", "Ver sucursales", "Ver las sucursales de la farmacia."),
+        ("branches.create", "Crear sucursales", "Agregar sucursales de la farmacia."),
+        ("branches.edit", "Editar sucursales", "Actualizar la información de las sucursales."),
+        ("branches.delete", "Eliminar sucursales", "Eliminar sucursales de la farmacia."),
 
-        ("suppliers.view", "View suppliers", "View supplier information."),
-        ("suppliers.create", "Create suppliers", "Add suppliers."),
-        ("suppliers.edit", "Edit suppliers", "Update supplier information."),
-        ("suppliers.delete", "Delete suppliers", "Remove suppliers.")
+        ("suppliers.view", "Ver proveedores", "Ver la información de los proveedores."),
+        ("suppliers.create", "Crear proveedores", "Agregar proveedores."),
+        ("suppliers.edit", "Editar proveedores", "Actualizar la información de los proveedores."),
+        ("suppliers.delete", "Eliminar proveedores", "Eliminar proveedores.")
     };
 
     private static readonly string[] EmployeePermissionCodes =
@@ -63,14 +63,14 @@ public static class SeedData
 
         await db.SaveChangesAsync();
 
-        await EnsureRoleAsync(roleManager, "Administrator", "Full access to all application modules.");
-        await EnsureRoleAsync(roleManager, "Employee", "Limited access for day-to-day pharmacy operations.");
+        await EnsureRoleAsync(roleManager, "Administrador", "Acceso completo a todos los módulos de la aplicación.");
+        await EnsureRoleAsync(roleManager, "Empleado", "Acceso limitado para las operaciones diarias de la farmacia.");
 
-        var administratorRole = await roleManager.FindByNameAsync("Administrator")
-            ?? throw new InvalidOperationException("The Administrator role could not be created.");
+        var administratorRole = await roleManager.FindByNameAsync("Administrador")
+            ?? throw new InvalidOperationException("No se pudo crear el rol Administrador.");
 
-        var employeeRole = await roleManager.FindByNameAsync("Employee")
-            ?? throw new InvalidOperationException("The Employee role could not be created.");
+        var employeeRole = await roleManager.FindByNameAsync("Empleado")
+            ?? throw new InvalidOperationException("No se pudo crear el rol Empleado.");
 
         var allPermissionIds = await db.Permissions.Select(p => p.Id).ToListAsync();
         await AddPermissionsAsync(db, administratorRole.Id, allPermissionIds);
@@ -88,7 +88,7 @@ public static class SeedData
             password: "Admin12345",
             firstName: "System",
             lastName: "Administrator",
-            roleName: "Administrator");
+            roleName: "Administrador");
 
         await EnsureUserAsync(
             userManager,
@@ -96,7 +96,7 @@ public static class SeedData
             password: "Employee12345",
             firstName: "Alex",
             lastName: "Morgan",
-            roleName: "Employee");
+            roleName: "Empleado");
     }
 
     private static async Task EnsureRoleAsync(
@@ -114,7 +114,7 @@ public static class SeedData
 
             if (!result.Succeeded)
                 throw new InvalidOperationException(
-                    $"Could not create role '{name}': {string.Join("; ", result.Errors.Select(e => e.Description))}");
+                    $"No se pudo crear el rol '{name}': {string.Join("; ", result.Errors.Select(e => e.Description))}");
         }
     }
 
@@ -166,7 +166,7 @@ public static class SeedData
 
             if (!createResult.Succeeded)
                 throw new InvalidOperationException(
-                    $"Could not create demo user '{email}': {string.Join("; ", createResult.Errors.Select(e => e.Description))}");
+                    $"No se pudo crear el usuario de demostración '{email}': {string.Join("; ", createResult.Errors.Select(e => e.Description))}");
         }
 
         if (!await userManager.IsInRoleAsync(user, roleName))
@@ -175,7 +175,7 @@ public static class SeedData
 
             if (!roleResult.Succeeded)
                 throw new InvalidOperationException(
-                    $"Could not assign role '{roleName}' to '{email}': {string.Join("; ", roleResult.Errors.Select(e => e.Description))}");
+                    $"No se pudo asignar el rol '{roleName}' a '{email}': {string.Join("; ", roleResult.Errors.Select(e => e.Description))}");
         }
     }
 }
