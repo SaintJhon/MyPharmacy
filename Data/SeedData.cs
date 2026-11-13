@@ -94,8 +94,8 @@ public static class SeedData
             userManager,
             email: "employee@mypharmacy.local",
             password: "Employee12345",
-            firstName: "Alex",
-            lastName: "Morgan",
+            firstName: "steven",
+            lastName: "bedo",
             roleName: "Empleado");
     }
 
